@@ -1,0 +1,9 @@
+AudioSegment
+SpeechRecognition
+torch
+gTTS
+click
+numpy
+configparser
+openai-whisper
+PyAudio
