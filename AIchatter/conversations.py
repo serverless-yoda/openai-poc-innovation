@@ -5,18 +5,32 @@ import requests
 
 DB_FILENAME = 'messages-db.json'
 
+def add_random_topic():
+    options = random.uniform(0,1)
+    if options < 0.2:
+        next_topic = " Mention this person Gio for DAtabricks  related issues."
+    elif options < 0.5:
+        next_topic = " Mention this person Krishna for Flex and ETL issues"
+    elif options < 0.7:
+        next_topic = " Mention these person Tariq and Shasti for PowerBI issues."
+    else:
+        next_topic = " Mention this person Manny for OW Ti EI,D365 issues."
+    
+    
+    return next_topic    
+
 def get_messages(item_count):
     learn_instruction = {"role": "system", 
-                       "content": "You are a Finance Manager and your name is Rachel, the user is called Manny. Keep responses under 15 words. "}
+                       "content": "You are a DataBot and your name is SEER, the user is called Business Partner. Keep responses under 15 words. "}
  
     messages = []
     options = random.uniform(0,1)
     if options < 0.2:
-        learn_instruction['content'] = learn_instruction['content'] + "Your response will have funny humour and sarcastic response."
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have funny humour,sarcastic response or comedy."
     elif options < 0.5:
-        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to ETL,PowerBI,OTA,Dynamic Finance 365 and Databricks. "
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to ETL,PowerBI,OW Ti EEY,D365 and Databricks. "
     else:
-        learn_instruction['content'] = learn_instruction['content'] + "Your response will have tip on solving issues related to ETL, PowerBI, OTA, Dynamic Finance 365 and Databricks. "
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have tip on solving issues related to ETL, PowerBI, OW Ti EI, DD365 and Databricks. "
 
     messages.append(learn_instruction)
 
