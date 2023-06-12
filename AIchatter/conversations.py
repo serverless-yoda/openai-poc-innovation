@@ -1,36 +1,70 @@
 import json
 import random
 import requests
+from random import randrange
+#print(randrange(10))
 
 
 DB_FILENAME = 'messages-db.json'
 
+
 def add_random_topic():
-    options = random.uniform(0,1)
-    if options < 0.2:
-        next_topic = " Mention this person Gio for DAtabricks  related issues."
-    elif options < 0.5:
-        next_topic = " Mention this person Krishna for Flex and ETL issues"
-    elif options < 0.7:
-        next_topic = " Mention these person Tariq and Shasti for PowerBI issues."
+    options = randrange(10)
+    if options == 0:
+        next_topic =  " Mention Gio for Databricks related issues."
+    elif options == 1:
+        next_topic =  " Mention Krish for ETL related issues."
+    elif options == 2:
+        next_topic =  " Mention Enterprise Delivery Team for Motek backend issues."
+    elif options == 3:
+        next_topic =  " Mention DevOps Team for Server, TeamCity, Docker, AWS and CI/CD issues."
+    elif options == 4:
+        next_topic =  " Mention Shas or Tariq for PowerBI issues."
+    elif options == 5:
+        next_topic =  " Mention FrontEnd Team for Motek frontend issues."
+    elif options == 6:
+        next_topic =  " Mention Application Support for D365 issues. Escalation point is Manny."
+    elif options == 7:
+        next_topic =  " Mention Manny for RentalReport, Inventory Assignments and Inventories pipeline issues."
+    elif options == 8:
+        next_topic =  " Mention Manny for failed Job issue and Tariq for missing records."
+    elif options == 9:
+        next_topic =  " Mention Mac for OTA issue. Escalation point is Manny."
     else:
-        next_topic = " Mention this person Manny for OW Ti EI,D365 issues."
-    
+        next_topic =  " Mention Krish for Project Management and Task Scheduling"
+
+
     
     return next_topic    
 
 def get_messages(item_count):
     learn_instruction = {"role": "system", 
-                       "content": "You are a DataBot and your name is SEER, the user is called Business Partner. Keep responses under 15 words. "}
+                       "content": "You are a THL Digital bot and your name is SEER, the user is called Client. Keep responses under 15 words. "}
  
     messages = []
-    options = random.uniform(0,1)
-    if options < 0.2:
+    options = randrange(10)
+    if options == 0:
         learn_instruction['content'] = learn_instruction['content'] + "Your response will have funny humour,sarcastic response or comedy."
-    elif options < 0.5:
-        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to ETL,PowerBI,OW Ti EEY,D365 and Databricks. "
+    elif options == 1:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to ETL and Flex Rate "
+    elif options == 2:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to Motek backend "
+    elif options == 3:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to Server, TeamCity, Docker, AWS and CI/CD "
+    elif options == 4:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to PowerBI "
+    elif options == 5:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to Motek Frontedd "
+    elif options == 6:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to D365 "
+    elif options == 7:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to RentalReport, Inventory Assignments and Inventories "
+    elif options == 8:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to PMT "
+    elif options == 9:
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have possible issues related to OTAAPI "
     else:
-        learn_instruction['content'] = learn_instruction['content'] + "Your response will have tip on solving issues related to ETL, PowerBI, OW Ti EI, DD365 and Databricks. "
+        learn_instruction['content'] = learn_instruction['content'] + "Your response will have tip on solving issues related to Project Management and Task Scheduling "
 
     messages.append(learn_instruction)
 

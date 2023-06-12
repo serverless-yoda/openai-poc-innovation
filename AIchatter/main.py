@@ -8,6 +8,7 @@ import openai
 import click
 import configparser
 
+
 from conversations import get_messages, save_messages, reset_messages,text_to_speech,add_random_topic
 
 config = configparser.ConfigParser()
@@ -42,12 +43,12 @@ def record_audio( energy, pause, dynamic_energy,r):
             audio = r.listen(source)
 
             transcribe = r.recognize_whisper_api(audio, api_key=OPENAI_KEY)
-            
+            print('YOU1...')
             messages = get_messages(5)
             user_message = {"role": "user", "content": transcribe + add_random_topic()}
             messages.append(user_message)
             
-           
+            print(messages)
             response = openai.ChatCompletion.create(
                         model="gpt-3.5-turbo",
                         messages=messages
@@ -55,6 +56,8 @@ def record_audio( energy, pause, dynamic_energy,r):
             message_text = response["choices"][0]["message"]["content"]
             print(f"AI Reply: {message_text}")
             
+
+            #text_to_speech(message_text, ELEVENLAB_KEY)
 
             mp3_obj = gTTS(text=message_text, lang="en", slow=False)
             mp3_obj.save("reply.mp3")
